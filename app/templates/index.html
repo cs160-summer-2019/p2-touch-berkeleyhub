@@ -83,8 +83,65 @@
 			</div>
 		</div>
 	</div>
-	<script>
-	  // your solution here
+	<script type="text/javascript">
+	  var box1 = document.getElementById("rotate-box");
+    var box2 = document.getElementById("pinch-box");
+    var box3 = document.getElementById("press-box");
+    var box4 = document.getElementById("pan-box");
+    var box5 = document.getElementById("tap-box");
+    var box6 = document.getElementById("swipe-box");
+    
+    var mc1 = new Hammer.Manager(box1);
+    var mc2 = new Hammer.Manager(box2);
+    var mc3 = new Hammer.Manager(box3);
+    var mc4 = new Hammer.Manager(box4);
+    var mc5 = new Hammer.Manager(box5);
+    var mc6 = new Hammer.Manager(box6);
+    
+    var rotate = new Hammer.Rotate();
+    var pinch = new Hammer.Pinch();
+    var press = new Hammer.Press();
+    var pan = new Hammer.Pan();
+    var tap = new Hammer.Tap();
+    var swipe = new Hammer.Swipe();
+    
+    mc1.add(rotate);
+    mc2.add(pinch);
+    mc3.add(press);
+    mc4.add(pan);
+    mc5.add(tap);
+    mc6.add(swipe);
+    
+    mc1.on("rotate", function(action) {
+      box1.textContent = action.type + " detected";
+      box1.style.height="200px";
+      box1.style.width="200px";
+      box1.style.background="#ff0000";
+    });
+    mc2.on("pinch", function(action) {
+      box2.textContent = action.type + " detected";
+      box2.style.background="#0000ff";
+    });
+    mc3.on("press", function(action) {
+      box3.textContent = action.type + " detected";
+      box3.style.height="75px";
+      box3.style.width="75px";
+      box3.style.background="#00ff00";
+    });
+    mc4.on("pan", function(action) {
+      box4.textContent = action.type + " detected";
+      box4.style.background="#FFA500";
+    });
+    mc5.on("tap", function(action) {
+      box5.textContent = action.type + " detected";
+      box5.style.background="#800080";
+      box5.style.height="100%";
+      box5.style.width="100%";
+    });
+    mc6.on("swipe", function(action) {
+      box6.textContent = action.type + " detected";
+      box6.style.background="#C0C0C0";
+    });
   </script>
 </body>
 </html>
